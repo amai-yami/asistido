@@ -6,15 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (usuario) {
             userDisplay.innerText = usuario;  // Mostrar el nombre del usuario
-            logoutMenu.classList.remove("hidden");  // Mostrar el menú de logout
+            logoutMenu.style.display = "none";  // Asegurarse de que el menú está oculto inicialmente
         } else {
             userDisplay.innerText = "Iniciar Sesión";  // Mostrar "Iniciar Sesión"
-            logoutMenu.classList.add("hidden");  // Ocultar el menú de logout
+            logoutMenu.style.display = "none";  // Asegurar que el menú de logout esté oculto
         }
     }
 
     // Verificar si el usuario está logueado al cargar la página
-    fetch('../bd/obtener_usuario.php')  // Obtener la información del usuario
+    fetch('../bd/obtener_usuario.php')
         .then(response => {
             if (!response.ok) {
                 throw new Error("Error al obtener datos del usuario.");
@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then(data => {
-            // Actualizar la interfaz según el estado del usuario
             actualizarEstadoSesion(data.usuario);
         })
         .catch(error => {
@@ -33,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const loginLink = document.getElementById("userDisplay");
     if (loginLink) {
         loginLink.addEventListener("click", function() {
-            // Si no está logueado, redirigir a login.php
             if (loginLink.innerText === "Iniciar Sesión") {
                 window.location.href = "login.php";
             }
@@ -44,12 +42,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const cerrarSesionBtn = document.getElementById("cerrarSesion");
     if (cerrarSesionBtn) {
         cerrarSesionBtn.addEventListener("click", function() {
-            // Llamar al archivo para cerrar la sesión
             fetch('../bd/cerrar_sesion.php', { method: 'POST' })
                 .then(response => {
                     if (response.ok) {
-                        // Después de cerrar sesión, actualizar la UI sin recargar la página
-                        actualizarEstadoSesion(null);  // Usuario desconectado
+                        actualizarEstadoSesion(null); // Usuario desconectado
                     } else {
                         console.error("Error al cerrar sesión.");
                     }
@@ -59,7 +55,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         });
     }
+
+    // Mostrar y ocultar el menú de "Cerrar sesión" usando userContainer
+    const userContainer = document.getElementById("userContainer");
+    const userDisplay = document.getElementById("userDisplay");
+    const logoutMenu = document.getElementById("logoutMenu");
+
+    if (userContainer) {
+        userContainer.addEventListener("mouseover", function() {
+            if (userDisplay.innerText !== "Iniciar Sesión") {
+                logoutMenu.style.display = "block";  // Mostrar el menú
+            }
+        });
+
+        userContainer.addEventListener("mouseout", function() {
+            logoutMenu.style.display = "none";  // Ocultar el menú
+        });
+    }
 });
+
 
 
 

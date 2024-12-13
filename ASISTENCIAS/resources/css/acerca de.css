@@ -1,40 +1,244 @@
+/* Estilo general */
 body {
-    background-image: url('../fondo.jpeg'); /* Cambia la ruta si es necesario */
-    background-size: cover; /* Cubre todo el viewport */
-    background-position: center; /* Centra la imagen */
-    font-family: Arial, sans-serif; /* Fuente general */
-    margin: 0; /* Eliminar márgenes por defecto */
-    padding: 0; /* Eliminar relleno por defecto */
-    background-color: #000000; /* Color de fondo */
+    font-family: 'Roboto', sans-serif;
+    background-color:rgb(255, 253, 253); /* Fondo suave */
+    color: #333333; /* Texto oscuro, fácil de leer */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita el scroll horizontal */
 }
 
 header {
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente para el nav */
-    padding: 10px 20px; /* Espaciado alrededor del nav */
+    background-color: #007BFF;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 nav ul {
-    list-style-type: none; /* Eliminar viñetas */
-    padding: 0; /* Eliminar relleno por defecto */
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
-    display: inline; /* Mostrar los elementos en línea */
-    margin-right: 15px; /* Espaciado entre elementos */
+    margin: 0 15px;
 }
 
 nav ul li a {
-    text-decoration: none; /* Sin subrayado en enlaces */
-    color: #333; /* Color del texto */
+    color: rgb(10, 0, 0);
+    padding: 15px 25px;
+    text-decoration: none;
+    border-radius: 8px; 
+    transition: all 0.3s ease-in-out;
 }
 
 nav ul li a:hover {
-    color: #007BFF; /* Color al pasar el mouse sobre los enlaces */
+    background-color: #0056b3; 
+    transform: scale(1.05); /* Agrandar el enlace ligeramente */
 }
+
+main {
+    display: flex;
+    flex-wrap: wrap; /* Permite que se muevan a la siguiente fila si no caben */
+    justify-content: space-around; /* Espacio alrededor de cada panel */
+}
+
+.panel {
+    width: 45%; /* Los paneles ocuparán el 45% del ancho del contenedor */
+    margin: 10px; /* Espaciado entre los paneles */
+}
+
+
+.panel h2 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.panel p {
+    font-size: 16px;
+    color: #555555;
+    line-height: 1.6;
+}
+.hidden {
+    display: none !important;
+}
+
+button, .btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover, .btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Eleva ligeramente el botón */
+}
+
+button:active, .btn:active {
+    transform: translateY(0); /* Devuelve el botón a su posición */
+}
+
+button.disabled, .btn.disabled {
+    background-color: #cccccc;
+    pointer-events: none;
+}
+
+input[type="text"], input[type="email"], input[type="password"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
 /* Estilo del pie de página */
 footer {
     text-align: center; /* Centrar texto del footer */
     padding: 20px 0; /* Espaciado superior e inferior */
     background-color: #333; /* Color de fondo del footer */
     color: white; /* Color del texto */
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+
+.link {
+    position: relative;
+    display: inline-block;
+    font-size: 18px; /* Tamaño de la flecha */
+}
+
+/* Estilo para el login de usuario */
+
+   /* Contenedor para el usuario */
+   #userContainer {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.7);  /* Fondo translúcido */
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#userContainer:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* Estilos para el texto de iniciar sesión */
+#userDisplay {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#userDisplay:hover {
+    color: #0056b3; /* Color más oscuro al pasar el cursor */
+}
+
+/* Contenedor del usuario */
+#userContainer {
+    position: relative;
+    display: inline-block;
+}
+
+/* Menú de logout */
+#logoutMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+    display: none;  /* Empieza oculto */
+}
+
+/* Mostrar el menú de logout cuando el contenedor se pasa el cursor */
+#userContainer:hover #logoutMenu {
+    display: block;
+}
+
+/* Agregar transición de opacidad para suavizar la aparición del menú */
+#logoutMenu {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+#userContainer:hover #logoutMenu {
+    opacity: 1;
+}
+
+/* Botón de cerrar sesión */
+#cerrarSesion {
+    background-color: #007bff; /* Azul similar al texto de userDisplay */
+    color: #fff; /* Texto blanco */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%; /* Para que ocupe todo el ancho del contenedor */
+    text-align: center;
+}
+
+#cerrarSesion:hover {
+    background-color: #0056b3; /* Azul más oscuro */
+    transform: scale(1.05); /* Pequeño efecto de aumento */
+}
+
+#cerrarSesion:active {
+    background-color: #004080; /* Azul aún más oscuro */
+    transform: scale(0.95); /* Efecto de presionado */
 }

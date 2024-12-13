@@ -1,112 +1,75 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Cargar los institutos al cargar la página
-    cargarInstitutos();
+// Mostrar formulario para registrar alumno
+function RegistrarMateria() { 
+    const formContainer = document.getElementById('formContenedor');
+    formContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevos inputs
 
-    // Cargar las carreras cuando se seleccione un instituto
-    document.getElementById('instituto').addEventListener('change', cargarCarreras);
-    
-    // Cargar los años cuando se seleccione una carrera
-    document.getElementById('carrera').addEventListener('change', cargarAnios);
-    
-    // Cargar los cursos cuando se seleccione un año
-    document.getElementById('anio').addEventListener('change', cargarCursos);
-    
-    // Cargar las materias cuando se seleccione un curso
-    document.getElementById('curso').addEventListener('change', cargarMaterias);
-});
-
-function cargarInstitutos() {
-    // Aquí se haría la llamada a PHP para obtener los institutos
-    fetch('bd/cargar_institutos.php')
-        .then(response => response.json())
-        .then(data => {
-            const institutoSelect = document.getElementById('instituto');
-            data.forEach(instituto => {
-                const option = document.createElement('option');
-                option.value = instituto.id;
-                option.textContent = instituto.nombre;
-                institutoSelect.appendChild(option);
-            });
-        });
+    const formHtml = `
+        <form id="formRegistrar" onsubmit="event.preventDefault(); registrarAlumno();">
+            
+            <label for="instituto">instituto:</label>
+            <input type="text" id="instituto" name="instituto" required>
+            
+            <label for="carrera">carrera:</label>
+            <input type="text" id="carrera" name="carrera" required>
+            
+            <label for="anio">Año:</label>
+            <input type="text" id="anio" name="anio" required>
+            
+            <label for="Curso"> Curso:</label>
+            <input type="text" id="Curso" name="Curso" required >
+            
+            <label for="Materia">Materia:</label>
+            <input type="text" id="Materia" name="Materia" required>     <br><br>
+            
+            <button type="submit">Registrar datos</button>
+        </form>
+    `;
+    formContainer.innerHTML = formHtml; // Agregar el formulario al contenedor
 }
 
-function cargarCarreras() {
-    const institutoId = document.getElementById('instituto').value;
-    // Aquí se haría la llamada a PHP para obtener las carreras según el instituto
-    fetch(`bd/cargar_carreras.php?instituto_id=${institutoId}`)
-        .then(response => response.json())
-        .then(data => {
-            const carreraSelect = document.getElementById('carrera');
-            carreraSelect.innerHTML = '<option value="">-- Selecciona una Carrera --</option>'; // Resetear opciones
-            data.forEach(carrera => {
-                const option = document.createElement('option');
-                option.value = carrera.id;
-                option.textContent = carrera.nombre;
-                carreraSelect.appendChild(option);
-            });
-        });
+// Mostrar formulario para modificar alumno
+function mostrarRegistromateria() {
+    const formContainer = document.getElementById('formContenedor');
+    formContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevos inputs
+
+    const formHtml = `
+        <!-- Selección de instituto -->
+        <label for="instituto">Seleccionar Instituto:</label>
+        <select id="instituto" name="instituto" required>
+            <option value="">-- Selecciona un Instituto --</option>
+            <!-- Las opciones se cargarán aquí dinámicamente -->
+        </select>
+
+        <!-- Selección de carrera -->
+        <label for="carrera">Seleccionar Carrera/Departamento:</label>
+        <select id="carrera" name="carrera" required>
+            <option value="">-- Selecciona una Carrera --</option>
+            <!-- Las opciones se cargarán aquí dinámicamente -->
+        </select>
+
+        <!-- Selección de Año -->
+        <label for="anio">Seleccionar Año:</label>
+        <select id="anio" name="anio" required>
+            <option value="">-- Selecciona un Año --</option>
+            <!-- Las opciones se cargarán aquí dinámicamente -->
+        </select>
+
+        <!-- Selección de Curso -->
+        <label for="curso">Seleccionar Curso:</label>
+        <select id="curso" name="curso" required>
+            <option value="">-- Selecciona un Curso --</option>
+            <!-- Las opciones se cargarán aquí dinámicamente -->
+        </select>
+
+        <!-- Selección de Materia -->
+        <label for="materias">Seleccionar Materia:</label>
+        <select id="materias" name="materias" required>
+            <option value="">-- Selecciona una Materia --</option>
+            <!-- Las opciones se cargarán aquí dinámicamente -->
+        </select>
+    `;
+
+    formContainer.innerHTML = formHtml; // Agregar el formulario al contenedor
 }
 
-function cargarAnios() {
-    const carreraId = document.getElementById('carrera').value;
-    // Aquí se haría la llamada a PHP para obtener los años según la carrera
-    fetch(`bd/cargar_anios.php?carrera_id=${carreraId}`)
-        .then(response => response.json())
-        .then(data => {
-            const anioSelect = document.getElementById('anio');
-            anioSelect.innerHTML = '<option value="">-- Selecciona un Año --</option>'; // Resetear opciones
-            data.forEach(anio => {
-                const option = document.createElement('option');
-                option.value = anio.id;
-                option.textContent = anio.nombre;
-                anioSelect.appendChild(option);
-            });
-        });
-}
 
-function cargarCursos() {
-    const anioId = document.getElementById('anio').value;
-    // Aquí se haría la llamada a PHP para obtener los cursos según el año
-    fetch(`bd/cargar_cursos.php?anio_id=${anioId}`)
-        .then(response => response.json())
-        .then(data => {
-            const cursoSelect = document.getElementById('curso');
-            cursoSelect.innerHTML = '<option value="">-- Selecciona un Curso --</option>'; // Resetear opciones
-            data.forEach(curso => {
-                const option = document.createElement('option');
-                option.value = curso.id;
-                option.textContent = curso.nombre;
-                cursoSelect.appendChild(option);
-            });
-        });
-}
-function cargarMaterias() {
-    const cursoId = document.getElementById('curso').value;
-
-    // Solicita las materias desde el PHP
-    fetch(`bd/cargar_materias.php?curso_id=${cursoId}`)
-        .then(response => response.json())
-        .then(data => {
-            const materiasContainer = document.getElementById('materias');
-            materiasContainer.innerHTML = ''; // Limpiar opciones previas
-
-            data.forEach(materia => {
-                // Crear un toggle para cada materia
-                const label = document.createElement('label');
-                label.classList.add('materia-toggle'); // Clase para estilo de toggle
-
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.value = materia.id;
-                checkbox.name = 'materias[]'; // Para enviar al formulario
-
-                const span = document.createElement('span');
-                span.textContent = materia.nombre;
-
-                // Agregar los elementos al contenedor
-                label.appendChild(checkbox);
-                label.appendChild(span);
-                materiasContainer.appendChild(label);
-            });
-        });
-}

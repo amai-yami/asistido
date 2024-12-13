@@ -32,7 +32,7 @@ CREATE TABLE `alumno` (
   `correo_electronico` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni` (`dni`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,6 @@ CREATE TABLE `alumno` (
 
 LOCK TABLES `alumno` WRITE;
 /*!40000 ALTER TABLE `alumno` DISABLE KEYS */;
-INSERT INTO `alumno` VALUES (1,'Valentino','Andrade','1','35123456','1999-03-12','valentino.andrade@example.com'),(2,'Lucas','Cedres','2','34876543','1998-09-07','lucas.cedres@example.com'),(3,'Facundo','Figun','3','40123789','2000-11-25','facundo.figun@example.com'),(4,'Luca','Giordano','4','32456789','1997-06-02','luca.giordano@example.com'),(5,'Bruno','Godoy','5','36789123','1999-01-18','bruno.godoy@example.com'),(6,'Agustin','Gomez','6','33567890','1996-04-30','agustin.gomez@example.com'),(7,'Brian','Gonzalez','7','35678901','1997-12-05','brian.gonzalez@example.com'),(8,'Federico','Guigou Scottini','8','37890123','1998-08-15','federico.guigou@example.com'),(9,'Luna','Marrano','9','38901234','1999-03-10','luna.marrano@example.com'),(10,'Giuliana','Mercado Aviles','10','33345678','1995-10-22','giuliana.mercado@example.com'),(11,'Lucila','Mercado Ruiz','11','32567890','1996-12-08','lucila.mercado@example.com'),(12,'Angel','Murillo','12','34890123','1998-02-27','angel.murillo@example.com'),(13,'Juan','Nissero','13','36123456','1999-07-17','juan.nissero@example.com'),(14,'Fausto','Parada','14','35234567','1997-11-06','fausto.parada@example.com'),(15,'Ignacio','Piter','15','32789012','1996-05-19','ignacio.piter@example.com'),(16,'Tomas','Planchon','16','40456789','2000-09-03','tomas.planchon@example.com'),(17,'Elisa','Ronconi','17','31678123','1995-01-24','elisa.ronconi@example.com'),(18,'Exequiel','Sanchez','18','33234567','1998-04-11','exequiel.sanchez@example.com'),(19,'Melina','Schimpf Baldo','19','33789456','1996-10-09','melina.schimpf@example.com'),(20,'Diego','Segovia','20','34567890','1997-02-13','diego.segovia@example.com'),(21,'Camila','Sittner','21','36456789','1999-08-20','camila.sittner@example.com'),(22,'Yamil','Villa','22','35345678','1998-06-28','yamil.villa@example.com');
 /*!40000 ALTER TABLE `alumno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +67,6 @@ CREATE TABLE `alumno_nota` (
 
 LOCK TABLES `alumno_nota` WRITE;
 /*!40000 ALTER TABLE `alumno_nota` DISABLE KEYS */;
-INSERT INTO `alumno_nota` VALUES (10,1);
 /*!40000 ALTER TABLE `alumno_nota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +88,7 @@ CREATE TABLE `asistencia` (
   KEY `fk_asistencia_horario` (`id_horario`),
   CONSTRAINT `fk_asistencia_alumno` FOREIGN KEY (`id_alumno`) REFERENCES `alumno` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_asistencia_horario` FOREIGN KEY (`id_horario`) REFERENCES `horario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +97,6 @@ CREATE TABLE `asistencia` (
 
 LOCK TABLES `asistencia` WRITE;
 /*!40000 ALTER TABLE `asistencia` DISABLE KEYS */;
-INSERT INTO `asistencia` VALUES (1,'2024-11-08 23:00:38',10,NULL,1);
 /*!40000 ALTER TABLE `asistencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +224,7 @@ CREATE TABLE `nota` (
   `parcial2` int NOT NULL,
   `final` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -236,7 +233,6 @@ CREATE TABLE `nota` (
 
 LOCK TABLES `nota` WRITE;
 /*!40000 ALTER TABLE `nota` DISABLE KEYS */;
-INSERT INTO `nota` VALUES (1,3,33,3);
 /*!40000 ALTER TABLE `nota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -435,7 +431,7 @@ CREATE TABLE `usuario` (
   `id_rol` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -444,7 +440,6 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'p2','p3','P@gmail.com','.exe','$2y$10$Uhr3f7lqJdzlzMrIVnikXuM5v246Lf0IOrlNsgqClSQCqY/t/a.p.',1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -457,4 +452,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-08 20:16:34
+-- Dump completed on 2024-12-13  1:12:42

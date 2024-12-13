@@ -51,10 +51,3 @@ if (isset($_POST["nombre"], $_POST["apellido"], $_POST["dni"], $_POST["fecha_nac
     // Devolver error si no hay datos en formato JSON
     echo json_encode(['success' => false, 'error' => 'No se recibieron los datos del alumno.']);
 }
-
-
-/*
-
-
-
-*/

@@ -51,7 +51,7 @@ try {
 
     // Confirmar la transacción
     $db->commit();
-    echo json_encode(['success' => 'Asistencias guardadas correctamente.']);
+    echo json_encode(['success' => 'Asistencias modificada correctamente.']);
 } catch (Exception $e) {
     // En caso de error, deshacer la transacción
     $db->rollBack();

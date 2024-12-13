@@ -1,3 +1,5 @@
+
+
 // Mostrar formulario para registrar alumno
 function mostrarRegistro() { 
     const formContainer = document.getElementById('formContainer');
@@ -7,18 +9,23 @@ function mostrarRegistro() {
         <form id="formRegistrar" onsubmit="event.preventDefault(); registrarAlumno();">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
+            
             <label for="apellido">Apellido:</label>
             <input type="text" id="apellido" name="apellido" required>
+            
             <label for="dni">DNI:</label>
             <input type="number" id="dni" name="dni" required>
+            
             <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
             <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+            
             <label for="email">Correo Electrónico:</label>
             <input type="email" id="email" name="email" required placeholder="ejemplo@dominio.com">
+            
             <label for="matricula">Matrícula:</label>
-            <input type="text" id="matricula" name="matricula" required>
+            <input type="text" id="matricula" name="matricula" required>   <br><br>
+            
             <button type="submit">Registrar Alumno</button>
-            <div id="mensajeRegistro" style="margin-top: 10px;"></div> <!-- Div para mostrar mensajes -->
         </form>
     `;
     formContainer.innerHTML = formHtml; // Agregar el formulario al contenedor
@@ -35,14 +42,11 @@ function registrarAlumno() {
     })
     .then(response => response.json())
     .then(data => {
-        const mensajeRegistro = document.getElementById('mensajeRegistro');
         const mensajePanel = document.getElementById('mensajePanel');
         if (data.success) {
-            mensajeRegistro.textContent = data.message;
             mensajePanel.textContent = 'Alumno registrado correctamente';
             form.reset(); // Limpiar el formulario después de registrar
         } else {
-            mensajeRegistro.textContent = 'Error: ' + data.error;
             mensajePanel.textContent = 'No se pudo registrar el alumno';
         }
     })
@@ -61,7 +65,8 @@ function mostrarEliminar() {
     const formHtml = `
         <form id="formEliminar">
             <label for="matriculaEliminar">Matrícula del Alumno a Eliminar:</label>
-            <input type="text" id="matriculaEliminar" name="matriculaEliminar" required>
+            <input type="text" id="matriculaEliminar" name="matriculaEliminar" required>    <br><br>
+
             <button type="button" onclick="eliminarAlumno()">Eliminar Alumno</button>
         </form>
     `;
@@ -105,16 +110,22 @@ function mostrarModificar() {
         <form id="formModificar">
             <label for="nombreModificar">Nuevo Nombre:</label>
             <input type="text" id="nombreModificar" name="nombreModificar" required>
+            
             <label for="apellidoModificar">Nuevo Apellido:</label>
             <input type="text" id="apellidoModificar" name="apellidoModificar" required>
+            
             <label for="dniModificar">Nuevo DNI:</label>
             <input type="number" id="dniModificar" name="dniModificar" required>
+            
             <label for="fecha_nacimientoModificar">Nueva Fecha de Nacimiento:</label>
             <input type="date" id="fecha_nacimientoModificar" name="fecha_nacimientoModificar" required>
+            
             <label for="emailModificar">Nuevo Correo Electrónico:</label>
             <input type="email" id="emailModificar" name="emailModificar" required placeholder="ejemplo@dominio.com">
+            
             <label for="matriculaModificar">Matrícula del Alumno a Modificar:</label>
-            <input type="text" id="matriculaModificar" name="matriculaModificar" required>
+            <input type="text" id="matriculaModificar" name="matriculaModificar" required>     <br><br>
+            
             <button type="button" onclick="modificarAlumno()">Modificar Alumno</button>
         </form>
     `;
